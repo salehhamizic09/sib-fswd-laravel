@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArkatamaLaravelController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('arkatama', ArkatamaLaravelController::class);
+
+
+// catatan :
+// - helper
+// - view directive

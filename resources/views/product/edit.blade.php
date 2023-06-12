@@ -41,6 +41,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="text" class="form-control" id="rating" value="{{ $product->rating }}" name="rating" required>
+                        </div>
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Product Image</label>

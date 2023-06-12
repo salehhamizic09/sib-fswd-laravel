@@ -9,8 +9,8 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     <style>
         body {
-            background: #007bff;
-            background: linear-gradient(to right, #0062E6, #33AEFF);
+            background: #5c9f24;
+            /* background: linear-gradient(to right, #0062E6, #33AEFF); */
         }
 
         .btn-login {

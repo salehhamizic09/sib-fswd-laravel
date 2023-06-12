@@ -17,6 +17,8 @@
                                 <th>Nama</th>
                                 <th>Price</th>
                                 <th>Sale Price</th>
+                                <th>Brand</th>
+                                <th>Rating</th>
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -29,6 +31,8 @@
                                     <td>{{ $product->name }}</td>
                                     <td>Rp. {{ number_format($product->price, 0, 2) }}</td>
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
+                                    <td>{{ $product->brands }}</td>
+                                    <td>{{ $product->rating }}</td>
                                     <td>
                                         @if ($product->image == null)
                                             <span class="badge bg-primary">No Image</span>

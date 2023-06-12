@@ -23,6 +23,20 @@ class ProductController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        $related = Product::where('category_id', $product->category->id)->inRandomOrder()->limit(4)->get();
+
+        if ($product) {
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
+    }
+
     public function create()
     {
         $brands = Brand::all();
@@ -40,6 +54,7 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
             'brand' => 'required|string',
+            'rating' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -59,6 +74,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'sale_price' => $request->sale_price,
             'brands' => $request->brand,
+            'rating' => $request->rating,
             'image' => $imageName,
         ]);
 
@@ -101,6 +117,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'sale_price' => $request->sale_price,
                 'brands' => $request->brand,
+                'rating' => $request->rating,
                 'image' => $imageName,
             ]);
 
@@ -112,6 +129,7 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'sale_price' => $request->sale_price,
                 'brands' => $request->brand,
+                'rating' => $request->rating
             ]);
         }
 

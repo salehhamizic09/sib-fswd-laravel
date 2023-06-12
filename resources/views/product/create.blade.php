@@ -56,6 +56,14 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="text" class="form-control @error('rating') is-invalid @enderror" id="rating" value="{{ old('rating') }}" name="rating" required>
+                            @error('rating')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="image" class="form-label">Product Image</label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
                             @error('image')

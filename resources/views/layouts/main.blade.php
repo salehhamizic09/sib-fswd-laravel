@@ -46,10 +46,10 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    {{-- <script src="{{ asset('js/scripts.js') }}"></script>
-    <script src="{{ asset('js/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
-    <script src="{{ asset('js/datatables-demo.js') }}"></script> --}}
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    {{-- <script src="{{ asset('js/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/chart-bar-demo.js') }}"></script> --}}
+    <script src="{{ asset('js/datatables-demo.js') }}"></script>
 </body>
 
 </html>

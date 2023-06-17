@@ -7,10 +7,14 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('user.update', $user->id) }}" method="POST">
+                    <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Avatar</label>
+                            <input class="form-control" type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png., .webp">
+                        </div>                        
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" value="{{ $user->name }}" name="name" required>

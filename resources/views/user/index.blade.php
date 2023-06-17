@@ -26,7 +26,11 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="https://placehold.co/50x50" alt="avatar">
+                                        @if ($user->avatar == null)
+                                            <small><em>No Image</em></span>
+                                            @else
+                                                <img src="{{ asset('storage/user/' . $user->avatar) }}" alt="{{ $user->name }}" style="max-width: 50px">
+                                        @endif
                                     </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>

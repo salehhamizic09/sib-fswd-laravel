@@ -7,9 +7,17 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Avatar</label>
+                            <input class="form-control @error('avatar') is-invalid @enderror" type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png., .webp">
+                            @error('avatar')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>

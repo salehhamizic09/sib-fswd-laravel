@@ -19,7 +19,8 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Detail Product</a>
+            <a class="navbar-brand" href="#">Detail Product</a>
+            {{-- <a class="navbar-brand" href="{{ route('landing') }}">Kembali</a> --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
             </button>            
@@ -66,13 +67,21 @@
                 @foreach ($related as $product)
                     <div class="col mb-5">
                         <div class="card h-100">
+                            @if ($product['sale_price'] != 0)
+                                <!-- Sale badge-->
+                                <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            @endif
+
                             <!-- Product image-->
                             <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ $product->name }}</h5>
+                                    <a href="{{ route('product.show', ['id' => $product->id]) }}" style="text-decoration: none" class="text-dark">
+                                        <small class="text-strong">{{ $product->category->name }}</small>
+                                        <h5 class="fw-bolder">{{ $product->name }}</h5>
+                                    </a>
                                     {{-- product rating --}}
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         @for ($i = 0; $i < $product->rating; $i++)

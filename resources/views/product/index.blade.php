@@ -7,6 +7,19 @@
 
             <a class="btn btn-primary mb-2" href="{{ route('product.create') }}" role="button">Create New</a>
 
+            {{-- Flash session message --}}
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @endif
+
             <div class="card mb-4">
                 <div class="card-body">
                     <table id="dataTable" class="table table-striped">
@@ -17,10 +30,12 @@
                                 <th>Nama</th>
                                 <th>Price</th>
                                 <th>Sale Price</th>
-                                <th>Brand</th>
-                                <th>Rating</th>
                                 <th>Image</th>
-                                <th>Action</th>
+                                <th>Status</th>
+                                @if (Auth::user()->role->name == 'Admin')
+                                    <th>Action</th>
+                                @endif
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,24 +46,46 @@
                                     <td>{{ $product->name }}</td>
                                     <td>Rp. {{ number_format($product->price, 0, 2) }}</td>
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
-                                    <td>{{ $product->brands }}</td>
-                                    <td>{{ $product->rating }}</td>
                                     <td>
                                         @if ($product->image == null)
-                                            <span class="badge bg-primary">No Image</span>
-                                        @else
-                                            <img src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 50px">
+                                            <small><em>No Image</em></span>
+                                            @else
+                                                <img src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 50px">
                                         @endif
                                     </td>
                                     <td>
-                                        <form onsubmit="return confirm('Are you sure? ');" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                        @if ($product->approve)
+                                            <small class="text-success">Approved</small>
+                                        @else
+                                            <small class="text-danger">Rejected</small>
+                                        @endif
+                                    </td>
+
+                                    @if (Auth::user()->role->name == 'Admin')
+                                    <td>
+                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.reject', $product->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                        </form>
+                            
+                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.approve', $product->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                        </form>
+                                    </td>
+                                    @endif
+                                    
+                                    <td>
+                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.destroy', $product->id) }}" method="POST">
                                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
-
+                                
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                        </form>
-                                    </td>
+                                        </form>                                                                             
+                                    </td>                                    
                                 </tr>
                             @endforeach
                         </tbody>

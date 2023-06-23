@@ -49,7 +49,12 @@
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-success mt-auto" href="https://wa.me/{{ $phoneNumber }}" target="_blank">
+                                                    <i class="fa-brands fa-whatsapp"></i>
+                                                    Pesan Sekarang
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

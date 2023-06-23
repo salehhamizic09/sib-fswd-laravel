@@ -24,16 +24,13 @@
   <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+  {{-- font awesome --}}
+  <script src="https://kit.fontawesome.com/1babd9929f.js" crossorigin="anonymous"></script>
+
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Groovin
-  * Updated: May 30 2023 with Bootstrap v5.3.0
-  * Template URL: https://bootstrapmade.com/groovin-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -54,7 +51,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach ($categories as $category)
-                    <li><a class="dropdown-item" href="{{ route('landing', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('landing', ['category' => $category->name]) }}#product">{{ $category->name }}</a></li>
                 @endforeach
             </ul>
           </li> 
@@ -175,7 +172,7 @@
                         <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
                     </div>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" placeholder="Max" name="max" value={{ old('max') }}>
+                        <input type="text" class="form-control" placeholder="Max" name="max" value="{{ old('max') }}">
                     </div>
                     <div class="col-sm-3">
                         <button type="submit" class="btn btn-warning">Terapkan</button>
@@ -225,7 +222,12 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center">
+                                  <a class="btn btn-outline-success mt-auto" href="https://wa.me/{{ $phoneNumber }}" target="_blank">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    Pesan Sekarang
+                                  </a>
+                                </div>
                             </div>
                         </div>
                     </div>

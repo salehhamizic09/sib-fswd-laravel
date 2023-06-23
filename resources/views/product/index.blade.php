@@ -63,17 +63,19 @@
 
                                     @if (Auth::user()->role->name == 'Admin')
                                     <td>
-                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.reject', $product->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                        </form>
-                            
-                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.approve', $product->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                        </form>
+                                        <div class="d-flex gap-1">                                                                          
+                                            <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.approve', $product->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                            </form>
+
+                                            <form onsubmit="return confirm('Are you sure?');" action="{{ route('product.reject', $product->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            </form>
+                                        </div>
                                     </td>
                                     @endif
                                     

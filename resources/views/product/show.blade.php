@@ -13,6 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    {{-- font awesome --}}
+    <script src="https://kit.fontawesome.com/1babd9929f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -49,11 +51,10 @@
                     <p class="lead"> Brand      : {{ $product->brands }}</p>
                     <p class="lead"> Rating     : {{ $product->rating }}</p>
                     <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
+                        <a class="btn btn-outline-success flex-shrink-0" href="https://wa.me/{{ $phoneNumber }}" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            Pesan Sekarang
+                        </a>
                     </div>
                 </div>
             </div>

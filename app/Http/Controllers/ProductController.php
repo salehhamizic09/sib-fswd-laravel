@@ -15,9 +15,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->get();
+        $phoneNumber = Auth::user()->phone;
 
         if (Auth::user()->role->name == 'User') {
-            return view('product.card', ['products' => $products]);
+            return view('product.card',['products' => $products, 'phoneNumber' => $phoneNumber]);
         } else {
             return view('product.index', ['products' => $products]);
         }
@@ -38,7 +39,14 @@ class ProductController extends Controller
             ->limit(4)
             ->get();
 
-        return view('product.show', compact('product', 'related'));
+        // Mengambil nomor telepon dari tabel users berdasarkan user yang sedang login
+        $phoneNumber = null;
+        if (auth()->check()) {
+            $user = Auth::user();
+            $phoneNumber = $user->phone;
+        }
+
+        return view('product.show', compact('product', 'related', 'phoneNumber'));
     }
 
     public function create()

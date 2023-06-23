@@ -53,17 +53,19 @@
 
                                     @if (Auth::user()->role->name == 'Admin')
                                         <td>
-                                            <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.approve', $slider->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                            </form>
-                            
-                                            <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.reject', $slider->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                            </form>
+                                            <div class="d-flex gap-1">
+                                                <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.approve', $slider->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                                </form>
+                                
+                                                <form onsubmit="return confirm('Are you sure? ');" action="{{ route('slider.reject', $slider->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                                </form>
+                                            </div>                                            
                                         </td>
                                     @endif
                             

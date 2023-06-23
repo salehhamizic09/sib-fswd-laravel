@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
 {
@@ -16,6 +17,13 @@ class LandingController extends Controller
 
         // mengambil data slider yang sudah di approve
         $sliders = Slider::where('approve', '1')->get();
+
+        // Mengambil nomor telepon dari tabel users berdasarkan user yang sedang login
+        $phoneNumber = null;
+        if (auth()->check()) {
+            $user = Auth::user();
+            $phoneNumber = $user->phone;
+        }
 
         if ($request->category) {
             $products = Product::where('approve', 1)->with('category')->whereHas('category', function ($query) use ($request) {
@@ -28,9 +36,9 @@ class LandingController extends Controller
                 ->get();        
         } else {
             // mengambil 8 data produk secara acak
-            $products = Product::where('approve', 1)->inRandomOrder()->limit(8)->get();
+            $products = Product::where('approve', 1)->get();
         }
 
-        return view('landing2', compact('products', 'categories', 'sliders'));
+        return view('landing2', compact('products', 'categories', 'sliders', 'phoneNumber'));
     }
 }
